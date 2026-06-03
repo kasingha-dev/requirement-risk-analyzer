@@ -23,5 +23,30 @@
 {% endfor %}
 </ul>
 
+<hr>
+
+<h2>Risks</h2>
+
+<h3>High</h3>
+<ul>
+{% for risk in risks.high %}
+    <li>{{ risk }}</li>
+{% endfor %}
+</ul>
+
+<h3>Medium</h3>
+<ul>
+{% for risk in risks.medium %}
+    <li>{{ risk }}</li>
+{% endfor %}
+</ul>
+
+<h3>Low</h3>
+<ul>
+{% for risk in risks.low %}
+    <li>{{ risk }}</li>
+{% endfor %}
+</ul>
+
 </body>
 </html>

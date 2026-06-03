@@ -8,6 +8,7 @@ from fastapi import UploadFile
 from fastapi import File
 from services.file_processor import FileProcessor
 from services.gap_analyzer import GapAnalyzer
+from services.risk_analyzer import RiskAnalyzer
 
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -47,11 +48,16 @@ async def analyze(
     requirements
     )
 
+    risks = RiskAnalyzer.analyze(
+        requirements
+    )
+
     return templates.TemplateResponse(
         request=request,
         name="results.html",
         context={
             "requirements": requirements,
-            "missing_requirements": missing_requirements
+            "missing_requirements": missing_requirements,
+            "risks": risks
         }
     )
