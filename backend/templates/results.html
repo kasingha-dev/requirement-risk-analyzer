@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Requirements</title>
+    <title>Analysis Results</title>
 </head>
 <body>
 
-<h1>Extracted Requirements</h1>
+<h1>Requirement Analysis</h1>
+
+<h2>Extracted Requirements</h2>
 
 <pre>
 {{ requirements }}
 </pre>
+
+<hr>
+
+<h2>Missing Requirements</h2>
+
+<ul>
+{% for item in missing_requirements %}
+    <li>{{ item }}</li>
+{% endfor %}
+</ul>
 
 </body>
 </html>
