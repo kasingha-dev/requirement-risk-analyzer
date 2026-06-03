@@ -12,12 +12,19 @@ from services.risk_analyzer import RiskAnalyzer
 from services.question_generator import QuestionGenerator
 from services.architecture_analyzer import ArchitectureAnalyzer
 from services.report_generator import ReportGenerator
+from fastapi.staticfiles import StaticFiles
 
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from services.requirement_extractor import RequirementExtractor
 
 app = FastAPI()
+
+app.mount(
+    "/static",
+    StaticFiles(directory="static"),
+    name="static"
+)
 
 templates = Jinja2Templates(directory="templates")
 
@@ -66,8 +73,6 @@ async def analyze(
         requirements
     )
     )
-
-    print(architecture_concerns)
 
     report = ReportGenerator.generate(
         requirements=requirements,

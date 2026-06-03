@@ -2,27 +2,80 @@
 <html>
 <head>
     <title>Requirement Risk Analyzer</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/styles.css"
+    >
 </head>
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+
+    document
+        .getElementById("file-upload")
+        .addEventListener("change", function() {
+
+            const files = [...this.files];
+
+            const fileNames = files.map(
+                file => file.name
+            );
+
+            document.getElementById(
+                "selected-files"
+            ).innerText =
+                fileNames.length > 0
+                    ? fileNames.join(", ")
+                    : "No files selected";
+        });
+
+});
+</script>
 <body>
 
     <h1>Requirement Risk Analyzer</h1>
 
-    <form action="/analyze" method="post" enctype="multipart/form-data">
+    <p class="subtitle">
+        Identify requirement gaps, risks and architecture concerns before development begins.
+    </p>
 
-        <div>
-            <label>Select Files:</label>
+    <div class="card">
+
+        <form action="/analyze"
+              method="post"
+              enctype="multipart/form-data">
+
+            <label>
+                Upload Requirement Documents
+            </label>
+
             <br><br>
 
-            <input type="file" name="files" multiple>
-        </div>
+            <label for="file-upload" class="custom-file-upload">
+                Select Documents
+            </label>
 
-        <br>
+            <input
+                id="file-upload"
+                type="file"
+                name="files"
+                multiple
+                required
+            >
 
-        <button type="submit">
-            Analyze
-        </button>
+            <div id="selected-files">
+                No files selected
+            </div>
 
-    </form>
+            <br><br>
+
+            <button type="submit">
+                Analyze Requirements
+            </button>
+
+        </form>
+
+    </div>
 
 </body>
 </html>

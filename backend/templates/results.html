@@ -2,18 +2,76 @@
 <html>
 <head>
     <title>Analysis Results</title>
+
+    <link
+        rel="stylesheet"
+        href="/static/styles.css"
+    >
 </head>
 <body>
 
 <h1>Requirement Analysis</h1>
 
-<hr>
+<p class="subtitle">
+    Analysis completed successfully.
+</p>
+
+<div class="summary-grid">
+
+    <div class="summary-tile">
+        <div class="summary-number">
+            {{ report.summary.feature_count }}
+        </div>
+        <div class="summary-label">
+            Features
+        </div>
+    </div>
+
+    <div class="summary-tile">
+        <div class="summary-number">
+            {{ report.summary.actor_count }}
+        </div>
+        <div class="summary-label">
+            Actors
+        </div>
+    </div>
+
+    <div class="summary-tile">
+        <div class="summary-number">
+            {{ report.summary.integration_count }}
+        </div>
+        <div class="summary-label">
+            Integrations
+        </div>
+    </div>
+
+    <div class="summary-tile">
+        <div class="summary-number">
+            {{ report.summary.missing_requirement_count }}
+        </div>
+        <div class="summary-label">
+            Missing Requirements
+        </div>
+    </div>
+
+    <div class="summary-tile">
+        <div class="summary-number">
+            {{ report.summary.high_risk_count }}
+        </div>
+        <div class="summary-label">
+            High Risks
+        </div>
+    </div>
+
+</div>
+
+<div class="card">
 
 <h2>Summary</h2>
 
 <details>
     <summary>
-        Features ({{ report.summary.feature_count }})
+        Features
     </summary>
 
     <ul>
@@ -25,7 +83,7 @@
 
 <details>
     <summary>
-        Actors ({{ report.summary.actor_count }})
+        Actors
     </summary>
 
     <ul>
@@ -37,7 +95,7 @@
 
 <details>
     <summary>
-        Integrations ({{ report.summary.integration_count }})
+        Integrations
     </summary>
 
     <ul>
@@ -47,31 +105,9 @@
     </ul>
 </details>
 
-<details>
-    <summary>
-        Missing Requirements ({{ report.summary.missing_requirement_count }})
-    </summary>
+</div>
 
-    <ul>
-    {% for item in report.missing_requirements %}
-        <li>{{ item }}</li>
-    {% endfor %}
-    </ul>
-</details>
-
-<details>
-    <summary>
-        High Risks ({{ report.summary.high_risk_count }})
-    </summary>
-
-    <ul>
-    {% for risk in report.risks.high %}
-        <li>{{ risk }}</li>
-    {% endfor %}
-    </ul>
-</details>
-
-<hr>
+<div class="card">
 
 <h2>Missing Requirements</h2>
 
@@ -81,11 +117,15 @@
 {% endfor %}
 </ul>
 
-<hr>
+</div>
+
+<div class="card">
 
 <h2>Risks</h2>
 
-<h3>High Risk</h3>
+<h3 class="high-risk">
+    High Risk
+</h3>
 
 <ul>
 {% for risk in report.risks.high %}
@@ -93,7 +133,9 @@
 {% endfor %}
 </ul>
 
-<h3>Medium Risk</h3>
+<h3 class="medium-risk">
+    Medium Risk
+</h3>
 
 <ul>
 {% for risk in report.risks.medium %}
@@ -101,7 +143,9 @@
 {% endfor %}
 </ul>
 
-<h3>Low Risk</h3>
+<h3 class="low-risk">
+    Low Risk
+</h3>
 
 <ul>
 {% for risk in report.risks.low %}
@@ -109,11 +153,17 @@
 {% endfor %}
 </ul>
 
-<hr>
+</div>
+
+<div class="card">
 
 <h2>Questions To Ask Client</h2>
 
-<h3>Critical Questions</h3>
+<div class="priority-critical">
+
+<h3>
+Critical Questions
+</h3>
 
 <ul>
 {% for question in report.questions.critical %}
@@ -121,7 +171,15 @@
 {% endfor %}
 </ul>
 
-<h3>Important Questions</h3>
+</div>
+
+<br>
+
+<div class="priority-important">
+
+<h3>
+Important Questions
+</h3>
 
 <ul>
 {% for question in report.questions.important %}
@@ -129,11 +187,19 @@
 {% endfor %}
 </ul>
 
-<hr>
+</div>
+
+</div>
+
+<div class="card">
 
 <h2>Architecture Concerns</h2>
 
-<h3>High Priority</h3>
+<div class="arch-high-box">
+
+<h3 class="arch-high">
+High Priority
+</h3>
 
 <ul>
 {% for concern in report.architecture_concerns.high_priority %}
@@ -141,13 +207,23 @@
 {% endfor %}
 </ul>
 
-<h3>Medium Priority</h3>
+</div>
+
+<div class="arch-medium-box">
+
+<h3 class="arch-medium">
+Medium Priority
+</h3>
 
 <ul>
 {% for concern in report.architecture_concerns.medium_priority %}
     <li>{{ concern }}</li>
 {% endfor %}
 </ul>
+
+</div>
+
+</div>
 
 </body>
 </html>

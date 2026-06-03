@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+h1 {
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.summary-grid {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.summary-tile {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+.summary-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.summary-label {
+    color: #64748b;
+}
+
+ul {
+    margin-top: 10px;
+}
+
+.high-risk {
+    color: #dc2626;
+}
+
+.medium-risk {
+    color: #ea580c;
+}
+
+.low-risk {
+    color: #16a34a;
+}
+
+.priority-critical {
+    border-left: 5px solid #dc2626;
+    padding-left: 15px;
+}
+
+.priority-important {
+    border-left: 5px solid #f59e0b;
+    padding-left: 15px;
+}
+
+.arch-high {
+    color: #dc2626;
+}
+
+.arch-medium {
+    color: #ea580c;
+}
+
+.arch-high-box {
+    border-left: 5px solid #dc2626;
+    padding-left: 15px;
+}
+
+.arch-medium-box {
+    border-left: 5px solid #f59e0b;
+    padding-left: 15px;
+}
+
+details {
+    margin-bottom: 10px;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 12px 20px;
+    background: white;
+    border: 2px solid #2563eb;
+    border-radius: 8px;
+    color: #2563eb;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.custom-file-upload:hover {
+    background: #eff6ff;
+}
+
+#selected-files {
+    margin-top: 12px;
+    color: #64748b;
+}
