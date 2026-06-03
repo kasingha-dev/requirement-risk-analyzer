@@ -7,18 +7,76 @@
 
 <h1>Requirement Analysis</h1>
 
-<h2>Extracted Requirements</h2>
+<hr>
 
-<pre>
-{{ requirements }}
-</pre>
+<h2>Summary</h2>
+
+<details>
+    <summary>
+        Features ({{ report.summary.feature_count }})
+    </summary>
+
+    <ul>
+    {% for feature in report.requirements.features %}
+        <li>{{ feature }}</li>
+    {% endfor %}
+    </ul>
+</details>
+
+<details>
+    <summary>
+        Actors ({{ report.summary.actor_count }})
+    </summary>
+
+    <ul>
+    {% for actor in report.requirements.actors %}
+        <li>{{ actor }}</li>
+    {% endfor %}
+    </ul>
+</details>
+
+<details>
+    <summary>
+        Integrations ({{ report.summary.integration_count }})
+    </summary>
+
+    <ul>
+    {% for integration in report.requirements.integrations %}
+        <li>{{ integration }}</li>
+    {% endfor %}
+    </ul>
+</details>
+
+<details>
+    <summary>
+        Missing Requirements ({{ report.summary.missing_requirement_count }})
+    </summary>
+
+    <ul>
+    {% for item in report.missing_requirements %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+</details>
+
+<details>
+    <summary>
+        High Risks ({{ report.summary.high_risk_count }})
+    </summary>
+
+    <ul>
+    {% for risk in report.risks.high %}
+        <li>{{ risk }}</li>
+    {% endfor %}
+    </ul>
+</details>
 
 <hr>
 
 <h2>Missing Requirements</h2>
 
 <ul>
-{% for item in missing_requirements %}
+{% for item in report.missing_requirements %}
     <li>{{ item }}</li>
 {% endfor %}
 </ul>
@@ -27,23 +85,26 @@
 
 <h2>Risks</h2>
 
-<h3>High</h3>
+<h3>High Risk</h3>
+
 <ul>
-{% for risk in risks.high %}
+{% for risk in report.risks.high %}
     <li>{{ risk }}</li>
 {% endfor %}
 </ul>
 
-<h3>Medium</h3>
+<h3>Medium Risk</h3>
+
 <ul>
-{% for risk in risks.medium %}
+{% for risk in report.risks.medium %}
     <li>{{ risk }}</li>
 {% endfor %}
 </ul>
 
-<h3>Low</h3>
+<h3>Low Risk</h3>
+
 <ul>
-{% for risk in risks.low %}
+{% for risk in report.risks.low %}
     <li>{{ risk }}</li>
 {% endfor %}
 </ul>
@@ -55,7 +116,7 @@
 <h3>Critical Questions</h3>
 
 <ul>
-{% for question in questions.critical %}
+{% for question in report.questions.critical %}
     <li>{{ question }}</li>
 {% endfor %}
 </ul>
@@ -63,7 +124,7 @@
 <h3>Important Questions</h3>
 
 <ul>
-{% for question in questions.important %}
+{% for question in report.questions.important %}
     <li>{{ question }}</li>
 {% endfor %}
 </ul>
@@ -75,7 +136,7 @@
 <h3>High Priority</h3>
 
 <ul>
-{% for concern in architecture_concerns.high_priority %}
+{% for concern in report.architecture_concerns.high_priority %}
     <li>{{ concern }}</li>
 {% endfor %}
 </ul>
@@ -83,12 +144,10 @@
 <h3>Medium Priority</h3>
 
 <ul>
-{% for concern in architecture_concerns.medium_priority %}
+{% for concern in report.architecture_concerns.medium_priority %}
     <li>{{ concern }}</li>
 {% endfor %}
 </ul>
-
-<hr>
 
 </body>
 </html>

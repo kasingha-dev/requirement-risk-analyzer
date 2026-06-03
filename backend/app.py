@@ -11,6 +11,7 @@ from services.gap_analyzer import GapAnalyzer
 from services.risk_analyzer import RiskAnalyzer
 from services.question_generator import QuestionGenerator
 from services.architecture_analyzer import ArchitectureAnalyzer
+from services.report_generator import ReportGenerator
 
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -66,14 +67,20 @@ async def analyze(
     )
     )
 
+    print(architecture_concerns)
+
+    report = ReportGenerator.generate(
+        requirements=requirements,
+        missing_requirements=missing_requirements,
+        risks=risks,
+        questions=questions,
+        architecture_concerns=architecture_concerns
+    )
+
     return templates.TemplateResponse(
         request=request,
         name="results.html",
         context={
-            "requirements": requirements,
-            "missing_requirements": missing_requirements,
-            "risks": risks,
-            "questions": questions,
-            "architecture_concerns": architecture_concerns
+            "report": report
         }
     )
