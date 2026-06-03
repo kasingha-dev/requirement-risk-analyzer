@@ -10,6 +10,7 @@ from services.file_processor import FileProcessor
 
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from services.requirement_extractor import RequirementExtractor
 
 app = FastAPI()
 
@@ -37,11 +38,14 @@ async def analyze(
         documents.append(text)
 
     merged_text = FileProcessor.merge_documents(documents)
+    requirements = RequirementExtractor.extract_requirements(
+        merged_text
+    )
 
     return templates.TemplateResponse(
         request=request,
         name="results.html",
         context={
-            "merged_text": merged_text
+             "requirements": requirements
         }
     )
