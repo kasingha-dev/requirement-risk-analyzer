@@ -13,12 +13,15 @@ from services.question_generator import QuestionGenerator
 from services.architecture_analyzer import ArchitectureAnalyzer
 from services.report_generator import ReportGenerator
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import Response
+from services.pdf_generator import PDFGenerator
 
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from services.requirement_extractor import RequirementExtractor
 
 app = FastAPI()
+latest_report = None
 
 app.mount(
     "/static",
@@ -82,10 +85,36 @@ async def analyze(
         architecture_concerns=architecture_concerns
     )
 
+    global latest_report
+
+    latest_report = report
+
     return templates.TemplateResponse(
         request=request,
         name="results.html",
         context={
             "report": report
+        }
+    )
+
+
+@app.get("/download-pdf")
+async def download_pdf():
+
+    global latest_report
+
+    if latest_report is None:
+        return {"error": "No report available"}
+
+    pdf_bytes = PDFGenerator.generate(
+        latest_report
+    )
+
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition":
+            "attachment; filename=analysis_report.pdf"
         }
     )
