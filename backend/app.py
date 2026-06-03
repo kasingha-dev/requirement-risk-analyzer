@@ -10,6 +10,7 @@ from services.file_processor import FileProcessor
 from services.gap_analyzer import GapAnalyzer
 from services.risk_analyzer import RiskAnalyzer
 from services.question_generator import QuestionGenerator
+from services.architecture_analyzer import ArchitectureAnalyzer
 
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -59,6 +60,12 @@ async def analyze(
     risks
     )
 
+    architecture_concerns = (
+    ArchitectureAnalyzer.analyze(
+        requirements
+    )
+    )
+
     return templates.TemplateResponse(
         request=request,
         name="results.html",
@@ -66,6 +73,7 @@ async def analyze(
             "requirements": requirements,
             "missing_requirements": missing_requirements,
             "risks": risks,
-            "questions": questions
+            "questions": questions,
+            "architecture_concerns": architecture_concerns
         }
     )

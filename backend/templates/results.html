@@ -68,5 +68,27 @@
 {% endfor %}
 </ul>
 
+<hr>
+
+<h2>Architecture Concerns</h2>
+
+<h3>High Priority</h3>
+
+<ul>
+{% for concern in architecture_concerns.high_priority %}
+    <li>{{ concern }}</li>
+{% endfor %}
+</ul>
+
+<h3>Medium Priority</h3>
+
+<ul>
+{% for concern in architecture_concerns.medium_priority %}
+    <li>{{ concern }}</li>
+{% endfor %}
+</ul>
+
+<hr>
+
 </body>
 </html>
