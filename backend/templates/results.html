@@ -48,5 +48,25 @@
 {% endfor %}
 </ul>
 
+<hr>
+
+<h2>Questions To Ask Client</h2>
+
+<h3>Critical Questions</h3>
+
+<ul>
+{% for question in questions.critical %}
+    <li>{{ question }}</li>
+{% endfor %}
+</ul>
+
+<h3>Important Questions</h3>
+
+<ul>
+{% for question in questions.important %}
+    <li>{{ question }}</li>
+{% endfor %}
+</ul>
+
 </body>
 </html>

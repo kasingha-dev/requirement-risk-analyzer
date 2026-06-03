@@ -9,6 +9,7 @@ from fastapi import File
 from services.file_processor import FileProcessor
 from services.gap_analyzer import GapAnalyzer
 from services.risk_analyzer import RiskAnalyzer
+from services.question_generator import QuestionGenerator
 
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -52,12 +53,19 @@ async def analyze(
         requirements
     )
 
+    questions = QuestionGenerator.generate(
+    requirements,
+    missing_requirements,
+    risks
+    )
+
     return templates.TemplateResponse(
         request=request,
         name="results.html",
         context={
             "requirements": requirements,
             "missing_requirements": missing_requirements,
-            "risks": risks
+            "risks": risks,
+            "questions": questions
         }
     )
